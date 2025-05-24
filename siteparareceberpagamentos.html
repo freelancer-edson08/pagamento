@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Arte Pronta - Confirme o Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .payment-info {
+            background-color: #e9f7ef;
+            border: 1px solid #d4edda;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .payment-info h2 {
+            color: #28a745;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .payment-info p strong {
+            color: #333;
+        }
+
+        /* Estilos específicos para o Pix */
+        .pix-key-container {
+            background-color: #f0f8ff; /* Cor clara para destacar */
+            border: 1px solid #cceeff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 1.1em;
+            word-break: break-all; /* Garante que a chave Pix longa não quebre o layout */
+        }
+        .pix-key-container strong {
+            color: #007bff;
+        }
+        .copy-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .copy-button:hover {
+            background-color: #0056b3;
+        }
+        .copy-button:active {
+            background-color: #004085;
+        }
+        .copied-message {
+            color: green;
+            margin-left: 10px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+
+        .payment-verification {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .payment-verification label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        .payment-verification input[type="text"] {
+            width: calc(100% - 22px); /* Ajuste para padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .payment-verification button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .payment-verification button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Conteúdo oculto inicialmente */
+        #downloadContent {
+            display: none; /* Isso esconde o conteúdo inicialmente */
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .final-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #28a745; /* Cor verde para download */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #218838;
+        }
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #25d366; /* Cor do WhatsApp */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            background-color: #1da851;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirme o Pagamento para Baixar Sua Arte!</h1>
+        <p>Olá! Seu design exclusivo está pronto. Para ter acesso à versão final em alta qualidade, por favor, siga as instruções de pagamento abaixo.</p>
+
+        <div class="payment-info">
+            <h2>Como Realizar o Pagamento via Pix</h2>
+            <p>Faça a transferência Pix para a chave abaixo. Lembre-se de verificar o nome do beneficiário para garantir que está pagando para a pessoa certa.</p>
+            
+            <div class="pix-key-container">
+                <p><strong>Chave Pix (Telefone):</strong> <span id="pixKey">19992493607</span> 
+                   <button class="copy-button" onclick="copyPixKey()">Copiar</button>
+                   <span id="copiedMessage" class="copied-message">Copiado!</span>
+                </p>
+                <p><strong>Nome do Beneficiário:</strong> Edson da Silva Malheiros</p>
+                <p><strong>Valor:</strong> R$ 1,00 </p>
+            </div>
+
+            <p>Após realizar o pagamento, por favor, envie o comprovante pelo WhatsApp. Você receberá um código de confirmação para inserir abaixo e liberar o download.</p>
+        </div>
+
+        <a href="https://wa.me/5519992493607?text=Ol%C3%A1%2C%20acabei%20de%20fazer%20o%20pagamento%20do%20meu%20design.%20Segue%20o%20comprovante." class="whatsapp-button" target="_blank">
+            Enviar Comprovante via WhatsApp
+        </a>
+
+        <div class="payment-verification">
+            <h2>Confirme Seu Pagamento</h2>
+            <label for="confirmationCode">Insira o Código de Confirmação:</label>
+            <input type="text" id="confirmationCode" placeholder="Ex: PAGO123">
+            <button onclick="checkCode()">Verificar</button>
+            <p class="error-message" id="errorMessage" style="display: none;">Código incorreto. Tente novamente.</p>
+        </div>
+
+        <div id="downloadContent">
+            <h2>Sua Arte Final!</h2>
+            <p>Parabéns! Seu pagamento foi confirmado. Agora você pode baixar a sua arte em alta qualidade.</p>
+            <img src="URL_DA_SUA_IMAGEM_FINAL.jpg" alt="Sua arte final" class="final-image">
+            <a href="URL_DO_ARQUIVO_PARA_DOWNLOAD.zip" download="Seu_Design_Final.zip" class="download-button">
+                Baixar Agora!
+            </a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">Clique com o botão direito na imagem e escolha "Salvar imagem como..." ou clique no botão "Baixar Agora!" para o arquivo completo (se for um ZIP, etc.).</p>
+        </div>
+    </div>
+
+    <script>
+        const correctCode = "pago123"; // ATENÇÃO: Na prática, isto seria um código único para cada cliente, gerenciado por você.
+                                      // Ou seja, você precisaria editar este HTML para cada cliente ou ter um sistema mais robusto.
+
+        function checkCode() {
+            const inputCode = document.getElementById("confirmationCode").value.toLowerCase().trim();
+            const errorMessage = document.getElementById("errorMessage");
+            const downloadContent = document.getElementById("downloadContent");
+
+            if (inputCode === correctCode) {
+                downloadContent.style.display = "block"; // Mostra o conteúdo
+                errorMessage.style.display = "none"; // Esconde a mensagem de erro
+                document.querySelector('.payment-verification').style.display = 'none'; // Esconde a seção de verificação
+            } else {
+                errorMessage.style.display = "block"; // Mostra a mensagem de erro
+            }
+        }
+
+        function copyPixKey() {
+            const pixKeyElement = document.getElementById("pixKey");
+            const pixKeyText = pixKeyElement.innerText;
+            const copiedMessage = document.getElementById("copiedMessage");
+
+            navigator.clipboard.writeText(pixKeyText).then(() => {
+                copiedMessage.style.display = "inline";
+                setTimeout(() => {
+                    copiedMessage.style.display = "none";
+                }, 2000); // Esconde a mensagem após 2 segundos
+            }).catch(err => {
+                console.error('Falha ao copiar a chave Pix: ', err);
+                alert('Não foi possível copiar a chave Pix automaticamente. Por favor, copie manualmente: ' + pixKeyText);
+            });
+        }
+
+        // Lembre-se de substituir URL_DA_SUA_IMAGEM_FINAL.jpg e URL_DO_ARQUIVO_PARA_DOWNLOAD.zip
+        // pelas URLs reais dos seus arquivos.
+    </script>
+</body>
+</html>
